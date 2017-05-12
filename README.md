@@ -1,8 +1,7 @@
-# pux-starter-app
+# Pux WebSocket Example
 
-The [starter app](http://github.com/alexmingoia/pux-starter-app) is a pux
-project configured with isomorphic rendering and routing, hot-reloading, and a
-production server.
+A basic example of a websocket opened by the user with events fed back into the
+app.
 
 ## Installation
 

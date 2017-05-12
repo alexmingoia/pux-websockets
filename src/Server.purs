@@ -12,7 +12,6 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff, class MonadEff)
 import Control.Monad.Eff.Console (CONSOLE)
 import Data.Int (fromString)
-import Data.Foreign.Generic (defaultOptions, genericEncodeJSON)
 import Data.Maybe (fromMaybe)
 import Data.Newtype (un)
 import Hyper.Node.Server (runServer, defaultOptionsWithLogging)
@@ -55,9 +54,7 @@ appHandler = do
     }
 
   state <- lift' $ liftAff $ waitState (\(State st) -> st.loaded) app
-  let state_json = "window.__puxInitialState = "
-                 <> (genericEncodeJSON (defaultOptions { unwrapSingleConstructors = true }) state)
-                 <> ";"
+  let state_json = "window.__puxInitialState = null;"
 
   -- | Set proper response status
   _ <- writeStatus $ case ((un State state).route) of

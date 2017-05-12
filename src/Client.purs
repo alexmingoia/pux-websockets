@@ -44,8 +44,7 @@ main url state = do
   let handleWS ev = case ev of
         (OpenWS) -> do
           socket@(Connection s) <- newWebSocket (URL "ws://echo.websocket.org") []
-          s.onopen $= \event -> do
-            send app.input $ singleton $ OpenedWS socket
+          s.onopen $= \event -> send app.input $ singleton $ OpenedWS socket
         (OpenedWS (Connection s)) -> do
           s.onmessage $= \event -> do
             let msg = runMessage (runMessageEvent event)
